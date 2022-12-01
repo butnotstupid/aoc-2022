@@ -18,7 +18,7 @@ class Day1Test {
     @Test
     fun testPartTwo() {
         val partTwo = dayOne.partTwo()
-        assertThat(partTwo, `is`(208567L))
         println("PART TWO: $partTwo\n")
+        assertThat(partTwo, `is`(208567L))
     }
 }
