@@ -2,8 +2,6 @@ package days
 
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.core.Is.`is`
-import org.hamcrest.core.IsInstanceOf.instanceOf
-import org.hamcrest.core.IsNull.notNullValue
 import org.junit.jupiter.api.Test
 
 class Day1Test {
@@ -12,14 +10,15 @@ class Day1Test {
 
     @Test
     fun testPartOne() {
-        assertThat(dayOne.partOne(), `is`("THIS IS"))
+        val partOne = dayOne.partOne()
+        println("\nPART ONE: $partOne")
+        assertThat(partOne, `is`(70509L))
     }
 
     @Test
     fun testPartTwo() {
         val partTwo = dayOne.partTwo()
-        assertThat(partTwo, notNullValue())
-        assertThat(partTwo, instanceOf(String::class.java))
-        assertThat(partTwo, `is`("FILE"))
+        assertThat(partTwo, `is`(208567L))
+        println("PART TWO: $partTwo\n")
     }
 }
