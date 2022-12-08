@@ -10,15 +10,15 @@ class Day7Test {
 
     @Test
     fun testPartOne() {
-//        val partOne = daySeven.partOne()
-//        println("\nPART ONE: $partOne")
-//        assertThat(partOne, `is`())
+        val partOne = daySeven.partOne()
+        println("\nPART ONE: $partOne")
+        assertThat(partOne, `is`(1723892))
     }
 
     @Test
     fun testPartTwo() {
-//        val partTwo = daySeven.partTwo()
-//        println("PART TWO: $partTwo\n")
-//        assertThat(partTwo, `is`())
+        val partTwo = daySeven.partTwo()
+        println("PART TWO: $partTwo\n")
+        assertThat(partTwo, `is`(8474158))
     }
 }
