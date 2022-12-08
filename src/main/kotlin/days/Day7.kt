@@ -61,7 +61,7 @@ class Day7 : Day(7) {
     private fun readContents(currentDir: Directory, inputList: List<String>, startLine: Int): Int {
         var line = startLine
         val contents = mutableListOf<FileSystemObj>()
-        while(line < inputList.size && !inputList[line].startsWith('$')){
+        while (line < inputList.size && !inputList[line].startsWith('$')) {
             val (left, right) = inputList[line].split(" ")
             when (left) {
                 "dir" -> contents.add(Directory(right, currentDir))
@@ -84,12 +84,12 @@ class Day7 : Day(7) {
         }
     }
 
-    data class File(val fileName: String, val parent: Directory, val fileSize:Int): FileSystemObj() {
+    data class File(val fileName: String, val parent: Directory, val fileSize: Int) : FileSystemObj() {
         override val name: String = fileName
         override val size: Int = fileSize
     }
 
-    abstract class FileSystemObj{
+    abstract class FileSystemObj {
         abstract val name: String
         abstract val size: Int
     }
