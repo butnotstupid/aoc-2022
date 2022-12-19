@@ -1,10 +1,29 @@
 package days
 
+import java.lang.Integer.max
 import kotlin.reflect.full.primaryConstructor
 
 class Day17 : Day(17) {
     override fun partOne(): Any {
-        val map = Array(5000) { "|.......|".toCharArray() }.also { it[0] = "+-------+".toCharArray() }
+        return topRowDiffs(2022).sum()
+    }
+
+    override fun partTwo(): Any {
+        val totalSize = 1_000_000_000_000
+        val headSize = 10000
+        val tailSize = totalSize - headSize
+        val sampleSize = 5145
+
+        val headChunk = topRowDiffs(headSize)
+        val sample = headChunk.takeLast(sampleSize)
+
+        return headChunk.sumOf { it } +
+                sample.sum() * (tailSize / sampleSize) +
+                sample.take(((tailSize % sampleSize).toInt())).sum()
+    }
+
+    private fun topRowDiffs(rocksFallen: Int): List<Int> {
+        val map = Array(20000) { "|.......|".toCharArray() }.also { it[0] = "+-------+".toCharArray() }
         val winds = Cycled(inputList.first().toList())
         val shapes = sequence {
             while (true) yieldAll(
@@ -14,23 +33,18 @@ class Day17 : Day(17) {
             )
         }.iterator()
 
-        var fallen = 0
         var topRow = 0
-        while (fallen < 50) {
+        return (1..rocksFallen).map {
             val nextShape = shapes.next()
             val shapeBuilder: (Point) -> Shape = { nextShape.primaryConstructor!!.call(it) }
             val restPoint = fall(Point(topRow + 4, 3), shapeBuilder, map, winds)
             // mark # for the shape for the rest point
-            shapeBuilder(restPoint).apply {
-                mark(map)
-                topRow = this.top.row
-            }
-//            println("Wind number: ${winds.curIndex}")
-//            printMap(map, topRow)
-            fallen++
+            val fallenShape = shapeBuilder(restPoint)
+            fallenShape.mark(map)
+            val diff = max(topRow, fallenShape.top.row) - topRow
+            topRow += diff
+            diff
         }
-//        printMap(map, topRow)
-        return topRow
     }
 
     private fun printMap(map: Array<CharArray>, topRow: Int) {
@@ -38,10 +52,6 @@ class Day17 : Day(17) {
             println(it.joinToString(""))
         }
         println()
-    }
-
-    override fun partTwo(): Any {
-        TODO()
     }
 
     private fun fall(from: Point, shape: (Point) -> Shape, map: Array<CharArray>, winds: Cycled<Char>): Point {

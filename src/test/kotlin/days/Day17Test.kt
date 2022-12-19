@@ -12,13 +12,13 @@ class Day17Test {
     fun testPartOne() {
         val partOne = daySeventeen.partOne()
         println("\nPART ONE: $partOne")
-//        assertThat(partOne, `is`())
+        assertThat(partOne, `is`(3197))
     }
 
     @Test
     fun testPartTwo() {
-//        val partTwo = daySeventeen.partTwo()
-//        println("PART TWO: $partTwo\n")
-//        assertThat(partTwo, `is`())
+        val partTwo = daySeventeen.partTwo()
+        println("PART TWO: $partTwo\n")
+        assertThat(partTwo, `is`(1568513119571L))
     }
 }
