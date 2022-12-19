@@ -24,6 +24,7 @@ dependencies {
     testImplementation("org.junit.jupiter", "junit-jupiter-engine", "5.9.1")
     testImplementation("org.hamcrest", "hamcrest", "2.2")
     testImplementation ("com.github.stefanbirkner:system-lambda:1.2.1")
+    implementation(kotlin("reflect"))
 }
 
 tasks.withType<KotlinCompile> {
