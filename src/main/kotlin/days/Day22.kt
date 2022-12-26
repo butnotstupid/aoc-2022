@@ -165,7 +165,7 @@ class Day22 : Day(22) {
             4 to UP to ({ it: Point -> Position(Point(it.col, it.row), RIGHT) } to 3),
 
             3 to RIGHT to ({ it: Point -> Position(Point(it.col, it.row), UP) } to 2),
-            2 to DOWN to ({ it: Point -> Position(Point(it.row, it.col), LEFT) } to 3),
+            2 to DOWN to ({ it: Point -> Position(Point(it.col, it.row), LEFT) } to 3),
 
             5 to RIGHT to ({ it: Point -> Position(Point(sideSize - 1 - it.row, it.col), LEFT) } to 2),
             2 to RIGHT to ({ it: Point -> Position(Point(sideSize - 1 - it.row, it.col), LEFT) } to 5),
